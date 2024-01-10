@@ -12,6 +12,7 @@ import { Program } from "../Programs/Program";
 import { Dishes } from "../Dishes/Dishes";
 import { Dish } from "../Dishes/Dish";
 import { Exercises } from "../Exercises/Exercises";
+import Notes from "../Notes/Notes";
 
 export function AppRoutes() {
     return (
@@ -30,6 +31,7 @@ export function AppRoutes() {
                 <Route path="/dishes" element={<Dishes />}/>
                 <Route path="/dish" element={<Dish />}/>
                 <Route path="/exercises" element={<Exercises />}/>
+                <Route path="/notes" element={<Notes />}/>
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </HashRouter>

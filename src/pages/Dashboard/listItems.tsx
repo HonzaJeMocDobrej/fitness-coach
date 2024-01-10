@@ -17,12 +17,15 @@ import { Link } from "react-router-dom";
 export const ListItems = (props: any): JSX.Element => {
   return (
     <React.Fragment>
+        <Link to='/notes'>
       <ListItemButton>
         <ListItemIcon>
           <img src={notes} alt="" className="icon" />
         </ListItemIcon>
+
         <ListItemText primary="Notes" />
       </ListItemButton>
+        </Link>
       <ListItemButton selected>
         <ListItemIcon>
           <img src={calendar} alt="" className="icon" />
