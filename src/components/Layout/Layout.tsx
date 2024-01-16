@@ -110,7 +110,7 @@ export const themeOptions: ThemeOptions = {
     fontSize: 16,
     htmlFontSize: 20,
     h5: {
-      fontSize: "1.7rem",
+      fontSize: "1.35rem",
       fontWeight: 700,
       lineHeight: 1.06,
     },
@@ -242,7 +242,7 @@ export default function Layout({children} : props) {
           sx={{
             backgroundColor: "white",
             flexGrow: 1,
-            height: "100vh",
+            minHeight: "100vh",
             overflow: "auto",
           }}
         >
