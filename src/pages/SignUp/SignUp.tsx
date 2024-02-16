@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createUser } from '../../models/User';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props: any) {
   return (
@@ -33,6 +34,7 @@ const defaultTheme = createTheme();
 export default function SignUp() {
 
   const [info, setInfo] = useState()
+  const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,10 +45,19 @@ export default function SignUp() {
       firstname: data.get('firstname') as string,
       lastname: data.get('lastname') as string,
     })
-    if (user.status == 201) {
-      return
-    }
+    if (user.status == 400) return setInfo(user.msg)
+    if (user.status == 201) return navigate('/signin')
+    if (user.status == 500) return navigate('/error')
     setInfo(user.msg)
+    console.log(
+      {
+        email: data.get('email') as string,
+        password: data.get('password') as string,
+        firstname: data.get('firstname') as string,
+        lastname: data.get('lastname') as string,
+      }
+    );
+    
   };
 
   return (
@@ -72,7 +83,7 @@ export default function SignUp() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="firstname"
                   required
                   fullWidth
                   id="firstname"
@@ -86,7 +97,7 @@ export default function SignUp() {
                   fullWidth
                   id="lastname"
                   label="Last Name"
-                  name="lastName"
+                  name="lastname"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -133,6 +144,9 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            <p style={{color: 'red'}}>
+              {info}
+            </p>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
